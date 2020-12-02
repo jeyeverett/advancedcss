@@ -4,6 +4,10 @@
     padding: 10rem 0;
     font-size: 1.4rem;
 
+    @include respond (tab-port) {
+        padding: 8rem 0;
+    }
+
     &__logo {
         width: 15rem;
         height: auto;
@@ -12,12 +16,23 @@
     &__logo-box {
         text-align: center;
         margin-bottom: 8rem;
+
+        @include respond (tab-port) {
+            margin-bottom: 6rem;    
+        }
     }
 
     &__navigation {
         border-top: 1px solid $color-grey-dark;
         padding-top: 2rem;
         display: inline-block;
+        margin-left: 2rem;
+
+        @include respond (tab-port) {
+            width: 100%;
+            text-align: center;
+            margin-left: 0;
+        }
     }
 
     &__list {
@@ -57,5 +72,13 @@
         padding-top: 2rem;
         width: 80%;
         float: right;
+        margin-right: 2rem;
+        text-align: center;
+
+        @include respond (tab-port) {
+            width: 100%;
+            float: none;
+            margin-right: 0;
+        }
     }
 }

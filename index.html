@@ -61,13 +61,31 @@
 
                         <h3 class="heading-tertiary u-margin-bottom-small">Live adventures like you never have before</h3>
                         <p class="paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque tempora tempore ratione enim rerum aut doloribus saepe voluptatibus vel quam.</p>
-                        <a href="#" class="btn-text">Learn more &rarr;</a>
+                        <a href="#" class="btn-text u-margin-bottom-small">Learn more &rarr;</a>
                     </div>
                     <div class="col-1-of-2">
                         <div class="composition">
-                            <img src="img/nat-1-large.jpg" alt="Photo 1" class="composition__photo composition__photo--p1">
-                            <img src="img/nat-2-large.jpg" alt="Photo 2" class="composition__photo composition__photo--p2">
-                            <img src="img/nat-3-large.jpg" alt="Photo 3" class="composition__photo composition__photo--p3">
+                            <!-- Below we are providing the information the browser needs to choose the optimal image to be displayed on the client screen, we provide a srcset and beside each src we give the pixel width shown e.g. 300w. Then in the sizes attribute we give a condition along with what size the image will be at that condition e.g. at up to a max-width of 900, our image is approx 20% of the view port width, the last item is the default value. We add a src attribute at the end to account for outdated browsers. This takes care of both resolution and density switching i.e. view port width and pixel density-->
+                            <img 
+                                srcset="img/nat-1.jpg 300w, img/nat-1-large.jpg 1000w" 
+                                alt="Photo 1" 
+                                sizes="(max-width: 56.25em) 20vw, (max-width: 37.5em) 30vw, 300px" 
+                                class="composition__photo composition__photo--p1"
+                                src="img/nat-1-large.jpg">
+
+                            <img 
+                                srcset="img/nat-2.jpg 300w, img/nat-2-large.jpg 1000w" 
+                                alt="Photo 2" 
+                                sizes="(max-width: 56.25em) 20vw, (max-width: 37.5em) 30vw, 300px" 
+                                class="composition__photo composition__photo--p2"
+                                src="img/nat-2-large.jpg">
+
+                            <img 
+                                srcset="img/nat-3.jpg 300w, img/nat-3-large.jpg 1000w" 
+                                alt="Photo 3" 
+                                sizes="(max-width: 56.25em) 20vw, (max-width: 37.5em) 30vw, 300px" 
+                                class="composition__photo composition__photo--p3"
+                                src="img/nat-3-large.jpg">
                         </div>
                     </div>
                 </div>
@@ -229,7 +247,11 @@
                 <div class="row">
                     <div class="story">
                         <figure class="story__shape">
-                            <img src="img/nat-8.jpg" alt="Person on a tour" class="story__image">
+                            <picture class="story__image">
+                                <source media="(max-width: 56.1875em)" srcset="img/nat-8-small.jpg">
+                                <source media="(min-width: 56.25em)" srcset="img/nat-8-small-2x.jpg">
+                                <img src="img/nat-8-small-2x.jpg" alt="Person on a tour" class="story__image">
+                            </picture>
                             <figcaption class="story__caption">
                                 Mary Smith
                             </figcaption>
@@ -247,14 +269,18 @@
                 <div class="row">
                     <div class="story">
                         <figure class="story__shape">
-                            <img src="img/nat-9.jpg" alt="Person on a tour" class="story__image">
+                            <picture class="story__image">
+                                <source media="(max-width: 56.1875em)" srcset="img/nat-9-small.jpg">
+                                <source media="(min-width: 56.25em)" srcset="img/nat-9-small-2x.jpg">
+                                <img src="img/nat-9-small-2x.jpg" alt="Person on a tour" class="story__image">
+                            </picture>
                             <figcaption class="story__caption">
                                 Jack Wilson
                             </figcaption>
                         </figure>
                         <div class="story__text">
                             <h3 class="heading-tertiary u-margin-bottom-small">
-                                Wow! my life is completely different now
+                                Wow! my life is compl&shy;etely different now
                             </h3>
                             <p>
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias voluptatum mollitia. Numquam nostrum quod expedita, voluptatem eum, officiis maxime distinctio sequi nam velit, odio deleniti! Vitae deleniti tempora necessitatibus laudantium aliquam dolorum ex!
@@ -314,7 +340,14 @@
 
         <footer class="footer">
             <div class="footer__logo-box">
-                <img src="img/logo-green-2x.png" alt="Gull logo" class="footer__logo">
+
+                <!-- Below is for responsive images, specifically choosing the right version of the image for the right screen. In the srcset atrribute we list the images by resolution as shown. We use the Source tag to provide a media query i.e. if the media query is true, we use a src from the Source tag (either the 1x or 2x depending on resolution), if not we use the img tag srcset -->
+
+                <picture class="footer__logo">
+                    <source srcset="img/logo-green-small-1x.png 1x, img/logo-green-small-2x.png 2x" media="(max-width: 37.5em)">
+                    <img srcset="img/logo-green-1x.png 1x, img/logo-green-2x.png 2x" alt="Full logo" class="footer__logo" src="img/logo-green-2x.png">
+                </picture>
+
             </div>
             <div class="row">
                 <div class="col-1-of-2">
@@ -331,7 +364,7 @@
 
                 <div class="col-1-of-2">
                     <p class="footer__copyright">
-                        Built by <a href="#" class="footer__link">Jeysen Freedman</a> according to the online course <a href="#" class="footer__link">Advanced CSS and Sass</a> Copyright &copy; by <a href="#" class="footer__link">Jonas Schmedtmann</a>.
+                        Built by <a href="#" class="footer__link">Jeysen Freedman</a> according to the online course <a href="#" class="footer__link">Advanced CSS and Sass</a>. Copyright &copy; by <a href="#" class="footer__link">Jonas Schmedtmann</a>
                     </p>
                 </div>
             </div>
@@ -340,8 +373,19 @@
         <div class="popup" id="popup">
             <div class="popup__content">
                 <div class="popup__left">
-                    <img src="img/nat-8.jpg" alt="" class="popup__image">
-                    <img src="img/nat-9.jpg" alt="" class="popup__image">
+                    <img 
+                        srcset="img/nat-8-small.jpg 500w, img/nat-8-small-2x.jpg 960w" 
+                        alt="Woman paddling a canoe" 
+                        sizes="(max-width: 85em) 37.5vw, (min-width: 85.0625em) 25vw, 960w" 
+                        class="popup__image"
+                        src="img/nat-8-small-2x.jpg">
+
+                        <img 
+                        srcset="img/nat-9-small.jpg 500w, img/nat-9-small-2x.jpg 960w" 
+                        alt="Man standing on a mountain" 
+                        sizes="(max-width: 85em) 37.5vw, (min-width: 85.0625em) 25vw, 960w" 
+                        class="popup__image"
+                        src="img/nat-9-small-2x.jpg">
                 </div>
                 <div class="popup__right">
                     <a href="#section-tours" class="popup__close">x</a>

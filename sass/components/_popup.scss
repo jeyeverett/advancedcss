@@ -11,9 +11,26 @@
     visibility: hidden;
     transition: all .2s;
 
+    //Below we use a feature query to determine what properties a browser can support, and provide a backup if the browser is outdated or not compatible
+    @supports(-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        background-color: rgba($color-black, 0.3);
+    }
+
     &__left {
         width: 33.33333333%;
         display: table-cell;
+
+        @include respond (custom) {
+            width: 50%;
+            display: flex;
+            flex-direction: row;
+        }
+
+        @include respond (phone) {
+            display: none;
+        }
     }
 
     &__right {
@@ -22,6 +39,14 @@
         vertical-align: middle;
         padding: 3rem 5rem;
         position: relative;
+        text-align: center;
+
+        @include respond (custom) {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 1rem 3rem;
+        }
     }
 
     &__image {
@@ -45,6 +70,15 @@
         -moz-hyphens: auto;
         -webkit-hyphens: auto;
         hyphens: auto;
+
+        @include respond (custom) {
+            margin-bottom: 2rem;
+        }
+
+        @include respond (tab-port) {             
+            -moz-column-count: 1;
+            column-count: 1;
+        }
     }
 
     &:target {
@@ -55,6 +89,18 @@
     &:target &__content {
         opacity: 1;
         transform: translate(-50%, -50%) scale(1);
+
+        @include respond(custom) {
+            transform: translate(-50%, -50%) scale(0.8);
+        }
+
+        @include respond(tab-land) {
+            transform: translate(-50%, -50%) scale(0.9);
+        }
+
+        @include respond(tab-port) {
+            transform: translate(-50%, -50%) scale(1);
+        }
     }
 
     &__content {
@@ -68,6 +114,10 @@
         opacity: 0;
         transform: translate(-50%, -50%) scale(.25); //We need to repeat the translate (from the mixin) because we are adding scale
         transition: all .5s .2s;
+
+        @include respond(phone) {
+            width: 90%;
+        }
     }
 
     &__close {
